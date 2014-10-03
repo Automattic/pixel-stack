@@ -25,7 +25,7 @@ stack.buffer();
 
 ### PixelStack#push(Buffer data, Number x, Number y, Number w, Number h)
 
-- Inserts the `data` pixel buffer a the coordinates `x,y`
+- Inserts the `data` pixel buffer at the coordinates `x,y`
 - `data` can be any `Array`-like datastructure (`Buffer`, `ArrayBuffer`).
 - Returns the `PixelStack` instance.
 
