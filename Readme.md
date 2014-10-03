@@ -48,6 +48,10 @@ stack.buffer();
 
 - Returns the calculated pixel `Buffer`.
 
+### PixelStack#destroy()
+
+- Cleans the internal buffer.
+
 ## Credits
 
 Inspired by the `FixedJpegStack` and `DynamicJpegStack` interfaces of
