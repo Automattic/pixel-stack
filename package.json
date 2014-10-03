@@ -1,0 +1,5 @@
+{
+  "name": "pixel-stack",
+  "version": "0.0.1",
+  "description": "Interface to composite RGB/RGBA buffers"
+}
