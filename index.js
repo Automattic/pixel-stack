@@ -22,6 +22,8 @@ PixelStack.prototype.height = function(){
 };
 
 PixelStack.prototype.push = function(data, w, h, x, y){
+  if (!this._filled) this.fill([0, 0, 0]);
+
   x = x || 0;
   y = y || 0;
 
@@ -55,6 +57,8 @@ PixelStack.prototype.fill = function(data){
       buf[i++] = data[3];
     }
   }
+
+  this._filled = true;
 
   return this;
 };
