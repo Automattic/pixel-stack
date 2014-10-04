@@ -1,0 +1,8 @@
+{
+  "name": "pixel-stack-example",
+  "version": "0.0.1",
+  "description": "",
+  "dependencies": {
+    "picha": "0.4.4"
+  }
+}
