@@ -9,7 +9,7 @@ representing images.
 ```js
 var PixelStack = require('pixel-stack');
 var stack = new PixelStack;
-stack.background([0,0,0]);
+stack.fill([0,0,0]);
 stack.push([255,255,255,255,255,255], 0, 0, 2, 1);
 stack.push([255,255,255,255,255,255], 0, 1, 2, 1);
 stack.buffer();
@@ -17,19 +17,17 @@ stack.buffer();
 
 ## API
 
-### PixelStack(String type, Number width, Number height)
+### PixelStack(Number width, Number height, String type)
 
 - `type` can be `'rgb'` or `'rgba'`. Defaults to `rgb`.
-- `width` and `height` are optional. If `width` is supplied, `height`
-  must be supplied as well.
 
-### PixelStack#push(Buffer data, Number x, Number y, Number w, Number h)
+### PixelStack#push(Buffer data, Number w, Number h, Number x, Number y)
 
 - Inserts the `data` pixel buffer at the coordinates `x,y`
 - `data` can be any `Array`-like datastructure (`Buffer`, `ArrayBuffer`).
 - Returns the `PixelStack` instance.
 
-### PixelStack#background(Buffer data)
+### PixelStack#fill(Buffer data)
 
 - Sets the given `data` pixel buffer as background color.
 - Returns the `PixelStack` instance.
