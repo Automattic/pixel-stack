@@ -30,6 +30,8 @@ stack.buffer();
 ### PixelStack#fill(Buffer data)
 
 - Sets the given `data` pixel buffer as background color.
+- If not called, it'll default to filling with black (`0,0,0`) upon
+  the first call to `push` or `buffer`.
 - Returns the `PixelStack` instance.
 
 ### PixelStack#width()
