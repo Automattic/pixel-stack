@@ -64,5 +64,6 @@ PixelStack.prototype.fill = function(data){
 };
 
 PixelStack.prototype.buffer = function(){
+  if (!this._filled) this.fill([0, 0, 0]);
   return this._buffer;
 };
