@@ -1,62 +1,64 @@
 module.exports = PixelStack;
 
-function PixelStack(type, width, height){
-    if (!(this instanceof PixelStack)) return new PixelStack(type, width, height);
+function PixelStack(width, height, type){
+  if (!(this instanceof PixelStack)) {
+    return new PixelStack(type, width, height);
+  }
 
-    // config
-    this._type = type || 'rgb';
-    this._width = width;
-    this._height = height;
-    this._buffer = new Buffer(width * 3 * height);
+  this._type = type || 'rgb';
+  this._width = width;
+  this._height = height;
 
-    // Fill with black
-    this.background([0, 0, 0]);
+  var len = 'rgba' == type ? 4 : 3;
+  this._buffer = new Buffer(width * len * height);
 }
 
 PixelStack.prototype.width = function(){
-    return this._width;
+  return this._width;
 };
 
 PixelStack.prototype.height = function(){
-    return this._height;
+  return this._height;
 };
 
 PixelStack.prototype.push = function(data, w, h, x, y){
-    var buf_i = 0;
+  x = x || 0;
+  y = y || 0;
 
-    var start = y * this.width() * 3 + x * 3;
-    var buf = this.buffer();
+  var buf_i = 0;
+  var len = 'rgba' == this._type ? 4 : 3;
+  var width = this.width();
+  var start = y * width * len + x * len;
+  var buf = this.buffer();
 
-    for (i = 0; i < h; i++) {
-        for (j = 0; j < w; j++) {
-            for (k = 0; k < 3; k++) {
-                buf[start + i * this.width() * 3 + j * 3 + k] = data[buf_i + k];
-            }
-
-            if ('rgba' == this._type) {
-                buf_i += 4;
-            } else {
-                buf_i += 3;
-            }
-        }
+  for (var i = 0; i < h; i++) {
+    for (var j = 0; j < w; j++) {
+      for (var k = 0; k < len; k++) {
+        buf[start + i * width * len + j * len + k] = data[buf_i + k];
+      }
+      buf_i += len;
     }
+  }
 
-    return this;
+  return this;
 };
 
-PixelStack.prototype.background = function(data){
-    var i = 0;
-    var buf = this.buffer();
+PixelStack.prototype.fill = function(data){
+  var buf = this._buffer;
+  var i = 0;
 
-    while (i < buf.length) {
-        buf[i++] = data[0];
-        buf[i++] = data[1];
-        buf[i++] = data[2];
+  while (i < buf.length) {
+    buf[i++] = data[0];
+    buf[i++] = data[1];
+    buf[i++] = data[2];
+    if (4 == data.length) {
+      buf[i++] = data[3];
     }
+  }
 
-    return this;
+  return this;
 };
 
 PixelStack.prototype.buffer = function(){
-    return this._buffer;
+  return this._buffer;
 };
