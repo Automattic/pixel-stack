@@ -42,7 +42,7 @@ PixelStack.prototype.push = function(data, w, h, x, y, stride){
       }
       buf_i += len;
     }
-    buf_i += (i + 1) * (stride - w * len);
+    buf_i += stride - w * len;
   }
 
   return this;
