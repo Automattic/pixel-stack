@@ -21,10 +21,12 @@ stack.buffer();
 
 - `type` can be `'rgb'` or `'rgba'`. Defaults to `rgb`.
 
-### PixelStack#push(Buffer data, Number w, Number h, Number x, Number y)
+### PixelStack#push(Buffer data, Number w, Number h, Number x, Number y, Number stride)
 
 - Inserts the `data` pixel buffer at the coordinates `x,y`
 - `data` can be any `Array`-like datastructure (`Buffer`, `ArrayBuffer`).
+- `stride` can be a `Number` representing the size in bytes of each row,
+  in case there's byte padding.
 - Returns the `PixelStack` instance.
 
 ### PixelStack#fill(Buffer data)

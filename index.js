@@ -21,7 +21,7 @@ PixelStack.prototype.height = function(){
   return this._height;
 };
 
-PixelStack.prototype.push = function(data, w, h, x, y){
+PixelStack.prototype.push = function(data, w, h, x, y, stride){
   if (!this._filled) this.fill([0, 0, 0]);
 
   x = x || 0;
@@ -33,6 +33,8 @@ PixelStack.prototype.push = function(data, w, h, x, y){
   var start = y * width * len + x * len;
   var buf = this.buffer();
 
+  stride = stride || w * len;
+
   for (var i = 0; i < h; i++) {
     for (var j = 0; j < w; j++) {
       for (var k = 0; k < len; k++) {
@@ -40,6 +42,7 @@ PixelStack.prototype.push = function(data, w, h, x, y){
       }
       buf_i += len;
     }
+    buf_i += (i + 1) * (stride - w * len);
   }
 
   return this;
